@@ -1,0 +1,2 @@
+CL112233,Rua Cândida de Carvalho,São Migual,São Paulo,São Paulo,08041-030,477
+CL445566,Rua das Laranjeiras,Laranjeiras,Rio de Janeiro,Rio de Janeiro,23823-040,21
