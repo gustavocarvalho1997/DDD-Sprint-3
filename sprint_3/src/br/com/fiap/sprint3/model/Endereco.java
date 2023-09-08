@@ -2,13 +2,14 @@ package br.com.fiap.sprint3.model;
 
 public class Endereco {
 	//Atributos
-	private String idVinculo, logradouro, bairro, cidade, estado, cep;
+	private String idEndereco, idVinculo, logradouro, bairro, cidade, estado, cep;
 	private int numero;
 	
 	//Construtor
-	public Endereco(String idVinculo, String logradouro, String bairro, String cidade, String estado, String cep,
+	public Endereco(String idEndereco, String idVinculo, String logradouro, String bairro, String cidade, String estado, String cep,
 			int numero) {
 		super();
+		this.idEndereco = idEndereco;
 		this.idVinculo = idVinculo;
 		this.logradouro = logradouro;
 		this.bairro = bairro;
@@ -19,6 +20,9 @@ public class Endereco {
 	}//Endereco
 	
 	//Getters
+	public String getIdEndereco() {
+		return idEndereco;
+	}
 	public String getIdVinculo() {
 		return idVinculo;
 	}
@@ -42,6 +46,9 @@ public class Endereco {
 	}
 	
 	//Setters
+	public void setInEndereco(String idEndereco) {
+		this.idEndereco = idEndereco;
+	}
 	public void setIdVinculo(String idVinculo) {
 		this.idVinculo = idVinculo;
 	}
@@ -66,8 +73,6 @@ public class Endereco {
 	
 	//Métodos
 	public String retornarInformacoes() {
-		//private String idVinculo, logradouro, bairro, cidade, estado, cep;
-		//private int numero;
 		return "Logradouro: " + logradouro+ ", Número: " + numero + ", Bairro: " + bairro + ", Cidade: " 
 				+ cidade + ", Estado: " + estado + ", CEP: " + cep;
 	}// retornarInformacoes
@@ -75,6 +80,6 @@ public class Endereco {
 	//toString
 	@Override
 	public String toString() {
-		return "Endereco [idVinculo=" + idVinculo + ", logradouro=" + logradouro + ", numero=" + numero + "]";
+		return "Endereco [idEndereco=" + idEndereco + ", logradouro=" + logradouro + ", numero=" + numero + "]";
 	}
 }//Endereco
