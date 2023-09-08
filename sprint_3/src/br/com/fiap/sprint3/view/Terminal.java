@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import br.com.fiap.sprint3.model.Endereco;
 import br.com.fiap.sprint3.model.Guincho;
+import br.com.fiap.sprint3.model.PlanoDeSeguro;
 import br.com.fiap.sprint3.operator.SistemaDao;
 
 public class Terminal {
@@ -17,6 +18,9 @@ public class Terminal {
 			
 			FileReader inputStreamGuinchos = new FileReader("Guincho.txt");
 			BufferedReader arquivoEntradaGuinchos = new BufferedReader(inputStreamGuinchos);
+			
+			FileReader inputStreamPlanos = new FileReader("PlanoDeSeguro.txt");
+			BufferedReader arquivoEntradaPlanos = new BufferedReader(inputStreamPlanos);
 			
 			String linhaEnderecos;
 			while((linhaEnderecos = arquivoEntradaEnderecos.readLine()) != null) {
@@ -55,11 +59,26 @@ public class Terminal {
 				sist.getGuinchos().put(chassi, new Guincho(modelo, chassi, renavam, cor, ano, altura, comprimento, largura, cargaMaximaEmToneladas, comprimentoMaximo, informacoesAdicionais, tipo));
 			}
 			
+			String linhaPlanos;
+			while((linhaPlanos = arquivoEntradaPlanos.readLine()) != null) {
+				String[] arrPlanos = linhaPlanos.split(",");
+				
+				String idSeguro = arrPlanos[0];
+				String tipoDeSeguro = arrPlanos[1];
+				String coberturas = arrPlanos[2];
+				String dataDaContratacao = arrPlanos[3];
+				String idVinculo = arrPlanos[4];
+				
+				sist.getPlanos().put(idSeguro, new PlanoDeSeguro(idSeguro, tipoDeSeguro, coberturas, dataDaContratacao, idVinculo));
+			}
+			
 			System.out.println(sist.getEnderecos());
 			System.out.println(sist.getGuinchos());
+			System.out.println(sist.getPlanos());
 			
 			arquivoEntradaEnderecos.close();
 			arquivoEntradaGuinchos.close();
+			arquivoEntradaPlanos.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
