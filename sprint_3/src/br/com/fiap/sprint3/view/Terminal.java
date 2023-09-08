@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import br.com.fiap.sprint3.model.Caminhao;
 import br.com.fiap.sprint3.model.Endereco;
 import br.com.fiap.sprint3.model.Guincho;
 import br.com.fiap.sprint3.model.PlanoDeSeguro;
@@ -21,6 +22,9 @@ public class Terminal {
 			
 			FileReader inputStreamPlanos = new FileReader("PlanoDeSeguro.txt");
 			BufferedReader arquivoEntradaPlanos = new BufferedReader(inputStreamPlanos);
+			
+			FileReader inputStreamCaminhoes = new FileReader("Caminhao.txt");
+			BufferedReader arquivoEntradaCaminhoes = new BufferedReader(inputStreamCaminhoes);
 			
 			String linhaEnderecos;
 			while((linhaEnderecos = arquivoEntradaEnderecos.readLine()) != null) {
@@ -72,13 +76,34 @@ public class Terminal {
 				sist.getPlanos().put(idSeguro, new PlanoDeSeguro(idSeguro, tipoDeSeguro, coberturas, dataDaContratacao, idVinculo));
 			}
 			
+			String linhaCaminhoes;
+			while((linhaCaminhoes = arquivoEntradaCaminhoes.readLine()) != null) {
+				String[] arrCaminhoes = linhaCaminhoes.split(",");
+				
+				String modelo = arrCaminhoes[0];
+				String chassi = arrCaminhoes[1]; 
+				String renavam = arrCaminhoes[2];
+				String cor = arrCaminhoes[3];
+				int ano = Integer.parseInt(arrCaminhoes[4]);
+				double altura = Double.parseDouble(arrCaminhoes[5]);
+				double comprimento = Double.parseDouble(arrCaminhoes[6]);
+				double largura = Double.parseDouble(arrCaminhoes[7]);
+				int numeroDeEixos = Integer.parseInt(arrCaminhoes[8]);
+				double pesoTotalEmToneladas = Double.parseDouble(arrCaminhoes[9]);
+				String idVinculo = arrCaminhoes[10];
+				
+				sist.getCaminhoes().put(chassi, new Caminhao(modelo, chassi, renavam, cor, ano, altura, comprimento, largura, numeroDeEixos, pesoTotalEmToneladas, idVinculo));
+			}
+			
 			System.out.println(sist.getEnderecos());
 			System.out.println(sist.getGuinchos());
 			System.out.println(sist.getPlanos());
+			System.out.println(sist.getCaminhoes());
 			
 			arquivoEntradaEnderecos.close();
 			arquivoEntradaGuinchos.close();
 			arquivoEntradaPlanos.close();
+			arquivoEntradaCaminhoes.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

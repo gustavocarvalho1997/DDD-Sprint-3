@@ -2,7 +2,7 @@ package br.com.fiap.sprint3.operator;
 
 import java.util.HashMap;
 
-
+import br.com.fiap.sprint3.model.Caminhao;
 import br.com.fiap.sprint3.model.Endereco;
 import br.com.fiap.sprint3.model.Guincho;
 import br.com.fiap.sprint3.model.PlanoDeSeguro;
@@ -12,6 +12,7 @@ public class SistemaDao {
 	HashMap<String, Endereco> enderecos;
 	HashMap<String, Guincho> guinchos;
 	HashMap<String, PlanoDeSeguro> planos;
+	HashMap<String, Caminhao> caminhoes;
 
 	//Construtor
 	public SistemaDao() {
@@ -19,6 +20,7 @@ public class SistemaDao {
 		this.enderecos = new HashMap<>();
 		this.guinchos = new HashMap<>();
 		this.planos = new HashMap<>();
+		this.caminhoes = new HashMap<>();
 	}//SistemaDao
 
 	public HashMap<String, Endereco> getEnderecos() {
@@ -33,6 +35,10 @@ public class SistemaDao {
 		return planos;
 	}
 
+	public HashMap<String, Caminhao> getCaminhoes() {
+		return caminhoes;
+	}
+
 	public void setEnderecos(HashMap<String, Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
@@ -44,6 +50,12 @@ public class SistemaDao {
 	public void setPlanos(HashMap<String, PlanoDeSeguro> planos) {
 		this.planos = planos;
 	}
+
+	public void setCaminhoes(HashMap<String, Caminhao> caminhoes) {
+		this.caminhoes = caminhoes;
+	}
+
+	
 
 
 
