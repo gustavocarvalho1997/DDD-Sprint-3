@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import br.com.fiap.sprint3.model.Endereco;
+import br.com.fiap.sprint3.model.Guincho;
 import br.com.fiap.sprint3.operator.SistemaDao;
 
 public class Terminal {
@@ -14,12 +15,13 @@ public class Terminal {
 			FileReader inputStreamEnderecos = new FileReader("Enderecos.txt");
 			BufferedReader arquivoEntradaEnderecos = new BufferedReader(inputStreamEnderecos);
 			
+			FileReader inputStreamGuinchos = new FileReader("Guincho.txt");
+			BufferedReader arquivoEntradaGuinchos = new BufferedReader(inputStreamGuinchos);
+			
 			String linhaEnderecos;
 			while((linhaEnderecos = arquivoEntradaEnderecos.readLine()) != null) {
 				String[] arrEndereco = linhaEnderecos.split(",");
-				//(String idVinculo, String logradouro, String bairro, 
-				//String cidade, String estado, String cep,
-				//int numero)
+				
 				String idEndereco = arrEndereco[0];
 				String idVinculo = arrEndereco[1];
 				String logradouro = arrEndereco[2];
@@ -33,9 +35,31 @@ public class Terminal {
 				
 			}
 			
+			String linhaGuincho;
+			while((linhaGuincho = arquivoEntradaGuinchos.readLine()) != null) {
+				String[] arrGuinchos = linhaGuincho.split(",");
+				
+				String modelo = arrGuinchos[0];
+				String chassi = arrGuinchos[1];
+				String renavam = arrGuinchos[2];
+				String cor = arrGuinchos[3];
+				int ano = Integer.parseInt(arrGuinchos[4]);
+				double altura = Double.parseDouble(arrGuinchos[5]);
+				double comprimento = Double.parseDouble(arrGuinchos[6]);
+				double largura = Double.parseDouble(arrGuinchos[7]);
+				double cargaMaximaEmToneladas = Double.parseDouble(arrGuinchos[8]);
+				double comprimentoMaximo = Double.parseDouble(arrGuinchos[9]);
+				String informacoesAdicionais = arrGuinchos[10];
+				String tipo = arrGuinchos[11];
+				
+				sist.getGuinchos().put(chassi, new Guincho(modelo, chassi, renavam, cor, ano, altura, comprimento, largura, cargaMaximaEmToneladas, comprimentoMaximo, informacoesAdicionais, tipo));
+			}
+			
 			System.out.println(sist.getEnderecos());
+			System.out.println(sist.getGuinchos());
 			
 			arquivoEntradaEnderecos.close();
+			arquivoEntradaGuinchos.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
