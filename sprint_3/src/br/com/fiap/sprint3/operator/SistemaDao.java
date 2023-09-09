@@ -76,17 +76,14 @@ public class SistemaDao {
 	public void setClientes(HashMap<String, Cliente> clientes) {
 		this.clientes = clientes;
 	}
-
-
-
-
-	
-
-
-
-
 	
 	//Métodos
+	public void logar(Cliente cliente) {
+		cliente.setStatusLogin(true);
+	}//Logar
+	public void deslogar(Cliente cliente) {
+		cliente.setStatusLogin(false);
+	}//Deslogar
 
 	
 	

@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import br.com.fiap.sprint3.model.Caminhao;
 import br.com.fiap.sprint3.model.Chamado;
 import br.com.fiap.sprint3.model.Cliente;
@@ -16,6 +18,7 @@ import br.com.fiap.sprint3.operator.SistemaDao;
 public class Terminal {
 	public static void main(String[] args) {
 		SistemaDao sist = new SistemaDao();
+		//Leitura Arquivos
 		try {
 			FileReader inputStreamEnderecos = new FileReader("Enderecos.txt");
 			BufferedReader arquivoEntradaEnderecos = new BufferedReader(inputStreamEnderecos);
@@ -176,7 +179,34 @@ public class Terminal {
 				
 				sist.getClientes().put(idCliente, cliente);
 			}
+			//Leitura Arquivos
 			
+			//Login
+			String loginInformado = JOptionPane.showInputDialog("Informe seu ID como Cliente: ").toUpperCase();
+			String senhaInformada = JOptionPane.showInputDialog("Informe sua senha: ");
+			
+			String loginEfetivado = "";
+			
+			//Login
+			if(sist.getClientes().containsKey(loginInformado)) {
+				if(sist.getClientes().get(loginInformado).getSenha().equals(senhaInformada)) {
+					sist.logar(sist.getClientes().get(loginInformado));
+					loginEfetivado = loginInformado;
+					
+					JOptionPane.showConfirmDialog(null, "Bem vindo" + sist.getClientes().get(loginEfetivado));
+					
+				} else {
+					System.out.println("Senha inválida");
+				}
+			} else {
+				System.out.println("Usuário inexistente.");
+			}
+			
+			
+			
+			while(sist.getClientes().get(loginEfetivado).isStatusLogin()) {
+				
+			}
 			
 			arquivoEntradaEnderecos.close();
 			arquivoEntradaGuinchos.close();
