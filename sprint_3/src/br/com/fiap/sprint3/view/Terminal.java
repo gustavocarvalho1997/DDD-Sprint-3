@@ -7,6 +7,7 @@ import java.util.Set;
 
 import br.com.fiap.sprint3.model.Caminhao;
 import br.com.fiap.sprint3.model.Chamado;
+import br.com.fiap.sprint3.model.Cliente;
 import br.com.fiap.sprint3.model.Endereco;
 import br.com.fiap.sprint3.model.Guincho;
 import br.com.fiap.sprint3.model.PlanoDeSeguro;
@@ -30,6 +31,9 @@ public class Terminal {
 			
 			FileReader inputStreamChamados = new FileReader("Chamado.txt");
 			BufferedReader arquivoEntradaChamados = new BufferedReader(inputStreamChamados);
+			
+			FileReader inputStreamClientes = new FileReader("Cliente.txt");
+			BufferedReader arquivoEntradaClientes = new BufferedReader(inputStreamClientes);
 			
 			String linhaEnderecos;
 			while((linhaEnderecos = arquivoEntradaEnderecos.readLine()) != null) {
@@ -130,23 +134,56 @@ public class Terminal {
 				}//Vinculando Guincho
 				
 				sist.getChamados().put(idChamado, c);
-				
-			
 			}
 			
-			System.out.println(sist.getEnderecos());
-			System.out.println(sist.getGuinchos());
-			System.out.println(sist.getPlanos());
-			System.out.println(sist.getCaminhoes());
-			System.out.println(sist.getChamados());
-			System.out.println(sist.getChamados().get("CH112233").getGuinchoEscolhido());
-			System.out.println(sist.getChamados().get("CH445566").getGuinchoEscolhido());
+			String linhaClientes;
+			while((linhaClientes = arquivoEntradaClientes.readLine()) != null) {
+				String[] arrClientes = linhaClientes.split(",");
+				
+				String nome = arrClientes[0];
+				String cpf = arrClientes[1];
+				String idCliente = arrClientes[2];
+				String dataNascimento = arrClientes[3];
+				String sexo = arrClientes[4];
+				String email = arrClientes[5];
+				String senha = arrClientes[6];
+				
+				Cliente cliente = new Cliente(nome, cpf, idCliente, dataNascimento, sexo, email, senha);
+				Set<String> keysEnd = sist.getEnderecos().keySet();
+				for(String item : keysEnd) {
+					if(sist.getEnderecos().get(item).getIdVinculo().equalsIgnoreCase(cliente.getIdCliente())) {
+						cliente.setEndereco(sist.getEnderecos().get(item));
+					}
+				}//Vinculando Endereço
+				Set<String> keysPlanos = sist.getPlanos().keySet();
+				for(String item : keysPlanos) {
+					if(sist.getPlanos().get(item).getIdVinculo().equalsIgnoreCase(cliente.getIdCliente())) {
+						cliente.setPlanoDeSeguro(sist.getPlanos().get(item));
+					}
+				}//Vinculando Plano
+				Set<String> keysChamados = sist.getChamados().keySet();
+				for(String item : keysChamados) {
+					if(sist.getChamados().get(item).getIdVinculo().equalsIgnoreCase(cliente.getIdCliente())) {
+						cliente.getChamados().put(item, sist.getChamados().get(item));
+					}
+				}//Vinculando Chamados
+				Set<String> keysCaminhoes = sist.getCaminhoes().keySet();
+				for(String item : keysCaminhoes) {
+					if(sist.getCaminhoes().get(item).getIdVinculo().equalsIgnoreCase(cliente.getIdCliente())) {
+						cliente.setVeiculo(sist.getCaminhoes().get(item));
+					}
+				}//Vinculando Caminhão
+				
+				sist.getClientes().put(idCliente, cliente);
+			}
+			
 			
 			arquivoEntradaEnderecos.close();
 			arquivoEntradaGuinchos.close();
 			arquivoEntradaPlanos.close();
 			arquivoEntradaCaminhoes.close();
 			arquivoEntradaChamados.close();
+			arquivoEntradaClientes.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

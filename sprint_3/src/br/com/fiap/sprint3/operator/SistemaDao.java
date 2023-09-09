@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import br.com.fiap.sprint3.model.Caminhao;
 import br.com.fiap.sprint3.model.Chamado;
+import br.com.fiap.sprint3.model.Cliente;
 import br.com.fiap.sprint3.model.Endereco;
 import br.com.fiap.sprint3.model.Guincho;
 import br.com.fiap.sprint3.model.PlanoDeSeguro;
@@ -15,6 +16,7 @@ public class SistemaDao {
 	HashMap<String, PlanoDeSeguro> planos;
 	HashMap<String, Caminhao> caminhoes;
 	HashMap<String, Chamado> chamados;
+	HashMap<String, Cliente> clientes;
 
 	//Construtor
 	public SistemaDao() {
@@ -24,6 +26,7 @@ public class SistemaDao {
 		this.planos = new HashMap<>();
 		this.caminhoes = new HashMap<>();
 		this.chamados = new HashMap<>();
+		this.clientes = new HashMap<>();
 	}//SistemaDao
 
 	public HashMap<String, Endereco> getEnderecos() {
@@ -46,6 +49,10 @@ public class SistemaDao {
 		return chamados;
 	}
 
+	public HashMap<String, Cliente> getClientes() {
+		return clientes;
+	}
+
 	public void setEnderecos(HashMap<String, Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
@@ -65,6 +72,11 @@ public class SistemaDao {
 	public void setChamados(HashMap<String, Chamado> chamados) {
 		this.chamados = chamados;
 	}
+
+	public void setClientes(HashMap<String, Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
 
 
 
