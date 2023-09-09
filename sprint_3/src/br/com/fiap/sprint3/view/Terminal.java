@@ -42,8 +42,8 @@ public class Terminal {
 			while((linhaEnderecos = arquivoEntradaEnderecos.readLine()) != null) {
 				String[] arrEndereco = linhaEnderecos.split(",");
 				
-				String idEndereco = arrEndereco[0];
-				String idVinculo = arrEndereco[1];
+				String idEndereco = arrEndereco[0].toUpperCase();
+				String idVinculo = arrEndereco[1].toUpperCase();
 				String logradouro = arrEndereco[2];
 				String bairro = arrEndereco[3];
 				String cidade = arrEndereco[4];
@@ -78,11 +78,11 @@ public class Terminal {
 			while((linhaPlanos = arquivoEntradaPlanos.readLine()) != null) {
 				String[] arrPlanos = linhaPlanos.split(",");
 				
-				String idSeguro = arrPlanos[0];
+				String idSeguro = arrPlanos[0].toUpperCase();
 				String tipoDeSeguro = arrPlanos[1];
 				String coberturas = arrPlanos[2];
 				String dataDaContratacao = arrPlanos[3];
-				String idVinculo = arrPlanos[4];
+				String idVinculo = arrPlanos[4].toUpperCase();
 				
 				sist.getPlanos().put(idSeguro, new PlanoDeSeguro(idSeguro, tipoDeSeguro, coberturas, dataDaContratacao, idVinculo));
 			}
@@ -101,7 +101,7 @@ public class Terminal {
 				double largura = Double.parseDouble(arrCaminhoes[7]);
 				int numeroDeEixos = Integer.parseInt(arrCaminhoes[8]);
 				double pesoTotalEmToneladas = Double.parseDouble(arrCaminhoes[9]);
-				String idVinculo = arrCaminhoes[10];
+				String idVinculo = arrCaminhoes[10].toUpperCase();
 				
 				sist.getCaminhoes().put(chassi, new Caminhao(modelo, chassi, renavam, cor, ano, altura, comprimento, largura, numeroDeEixos, pesoTotalEmToneladas, idVinculo));
 			}
@@ -113,12 +113,12 @@ public class Terminal {
 				boolean chamadoAtivo = Boolean.parseBoolean(arrChamados[0]);
 				boolean chamadoPausado = Boolean.parseBoolean(arrChamados[1]);
 				boolean chamadoFechado = Boolean.parseBoolean(arrChamados[2]);
-				String idChamado = arrChamados[3];
+				String idChamado = arrChamados[3].toUpperCase();
 				String dataDaOcorrencia = arrChamados[4];
 				String horaDaOcorrencia = arrChamados[5];
 				String descricao = arrChamados[6];
 				String tipoGuincho = arrChamados[7];
-				String idVinculo = arrChamados[8];
+				String idVinculo = arrChamados[8].toUpperCase();
 				String status = arrChamados[9];
 				
 				Chamado c = new Chamado(chamadoAtivo, chamadoPausado, chamadoFechado, idChamado, dataDaOcorrencia, horaDaOcorrencia, descricao, tipoGuincho, idVinculo, status);
@@ -145,7 +145,7 @@ public class Terminal {
 				
 				String nome = arrClientes[0];
 				String cpf = arrClientes[1];
-				String idCliente = arrClientes[2];
+				String idCliente = arrClientes[2].toUpperCase();
 				String dataNascimento = arrClientes[3];
 				String sexo = arrClientes[4];
 				String email = arrClientes[5];
@@ -193,7 +193,7 @@ public class Terminal {
 					sist.logar(sist.getClientes().get(loginInformado));
 					loginEfetivado = loginInformado;
 					
-					JOptionPane.showConfirmDialog(null, "Bem vindo" + sist.getClientes().get(loginEfetivado));
+					JOptionPane.showConfirmDialog(null, "Bem vindo(a)" + sist.getClientes().get(loginEfetivado).getNome());
 					
 				} else {
 					System.out.println("Senha inválida");
@@ -205,11 +205,16 @@ public class Terminal {
 			
 			
 			while(sist.getClientes().get(loginEfetivado).isStatusLogin()) {
-				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Qual operação deseja realizar?\n1 - Verificar suas informações\n2 - Verificar histórico de chamados"));
+				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Qual operação deseja realizar?\n1 - Verificar suas informações\n2 - Verificar histórico de chamados"
+						+ "\n3 - Alterar Status chamado"));
 				if(opcao == 1) {
 					sist.imprimirInformacoes(sist.getClientes().get(loginEfetivado));
 				} else if(opcao == 2) {
-					
+					sist.imprimirChamados(sist.getClientes().get(loginEfetivado));
+				} else if(opcao == 3) {
+					sist.alterarStatusChamado(sist.getClientes().get(loginEfetivado));
+				} else if(opcao == 4) {
+					sist.getClientes().get(loginEfetivado).setStatusLogin(false);
 				}
 			}//Menu
 			

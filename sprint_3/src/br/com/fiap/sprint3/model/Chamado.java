@@ -131,6 +131,6 @@ public class Chamado {
 	//toString
 	@Override
 	public String toString() {
-		return "Chamado [descricao=" + descricao + ", idChamado=" + idChamado + "]";
+		return "Chamado [descricao=" + descricao + ", idChamado=" + idChamado + ", status=" + status + "]";
 	}
 }//CLASS
