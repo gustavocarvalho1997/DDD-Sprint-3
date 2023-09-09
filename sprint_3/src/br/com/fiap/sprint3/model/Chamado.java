@@ -5,11 +5,11 @@ public class Chamado {
 	private Endereco endereco;
 	private Veiculo guinchoEscolhido;
 	private boolean chamadoAtivo, chamadoPausado, chamadoFechado;
-	private String idChamado, dataDaOcorrencia, horaDaOcorrencia, descricao, tipoGuincho, idVinculo;
+	private String idChamado, dataDaOcorrencia, horaDaOcorrencia, descricao, tipoGuincho, idVinculo, status;
 	
 	//Construtor
 	public Chamado(boolean chamadoAtivo, boolean chamadoPausado, boolean chamadoFechado, String idChamado,
-			String dataDaOcorrencia, String horaDaOcorrencia, String descricao, String tipoGuincho, String idVinculo) {
+			String dataDaOcorrencia, String horaDaOcorrencia, String descricao, String tipoGuincho, String idVinculo, String status) {
 		super();
 		this.chamadoAtivo = chamadoAtivo;
 		this.chamadoPausado = chamadoPausado;
@@ -20,6 +20,7 @@ public class Chamado {
 		this.descricao = descricao;
 		this.tipoGuincho = tipoGuincho;
 		this.idVinculo = idVinculo;
+		this.status = status;
 	}
 
 	//Getters
@@ -66,6 +67,11 @@ public class Chamado {
 	public String getIdVinculo() {
 		return idVinculo;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
 	//Setters
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
@@ -111,11 +117,15 @@ public class Chamado {
 		this.idVinculo = idVinculo;
 	}
 	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	//Métodos
 	public String retornarInformacoes() {
 		return "Id do Chamado: " + idChamado + ", Descrição: " + descricao 
 				+ ", Data: " + dataDaOcorrencia + ", Horário: " + horaDaOcorrencia
-				+ ", Tipo de Guincho: " + tipoGuincho;
+				+ ", Tipo de Guincho: " + tipoGuincho + ", Status: " + status;
 	}//retornarInformacoes
 
 	//toString

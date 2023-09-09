@@ -3,8 +3,10 @@ package br.com.fiap.sprint3.view;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Set;
 
 import br.com.fiap.sprint3.model.Caminhao;
+import br.com.fiap.sprint3.model.Chamado;
 import br.com.fiap.sprint3.model.Endereco;
 import br.com.fiap.sprint3.model.Guincho;
 import br.com.fiap.sprint3.model.PlanoDeSeguro;
@@ -26,6 +28,9 @@ public class Terminal {
 			FileReader inputStreamCaminhoes = new FileReader("Caminhao.txt");
 			BufferedReader arquivoEntradaCaminhoes = new BufferedReader(inputStreamCaminhoes);
 			
+			FileReader inputStreamChamados = new FileReader("Chamado.txt");
+			BufferedReader arquivoEntradaChamados = new BufferedReader(inputStreamChamados);
+			
 			String linhaEnderecos;
 			while((linhaEnderecos = arquivoEntradaEnderecos.readLine()) != null) {
 				String[] arrEndereco = linhaEnderecos.split(",");
@@ -42,7 +47,6 @@ public class Terminal {
 				sist.getEnderecos().put(idEndereco, new Endereco(idEndereco, idVinculo, logradouro, bairro, cidade, estado, cep, numero));
 				
 			}
-			
 			String linhaGuincho;
 			while((linhaGuincho = arquivoEntradaGuinchos.readLine()) != null) {
 				String[] arrGuinchos = linhaGuincho.split(",");
@@ -95,15 +99,54 @@ public class Terminal {
 				sist.getCaminhoes().put(chassi, new Caminhao(modelo, chassi, renavam, cor, ano, altura, comprimento, largura, numeroDeEixos, pesoTotalEmToneladas, idVinculo));
 			}
 			
+			String linhaChamados;
+			while((linhaChamados = arquivoEntradaChamados.readLine()) != null) {
+				String[] arrChamados = linhaChamados.split(",");
+				
+				boolean chamadoAtivo = Boolean.parseBoolean(arrChamados[0]);
+				boolean chamadoPausado = Boolean.parseBoolean(arrChamados[1]);
+				boolean chamadoFechado = Boolean.parseBoolean(arrChamados[2]);
+				String idChamado = arrChamados[3];
+				String dataDaOcorrencia = arrChamados[4];
+				String horaDaOcorrencia = arrChamados[5];
+				String descricao = arrChamados[6];
+				String tipoGuincho = arrChamados[7];
+				String idVinculo = arrChamados[8];
+				String status = arrChamados[9];
+				
+				Chamado c = new Chamado(chamadoAtivo, chamadoPausado, chamadoFechado, idChamado, dataDaOcorrencia, horaDaOcorrencia, descricao, tipoGuincho, idVinculo, status);
+				Set<String> keysEnd = sist.getEnderecos().keySet();
+				for(String item : keysEnd) {
+					if(sist.getEnderecos().get(item).getIdVinculo().equalsIgnoreCase(c.getIdChamado())) {
+						c.setEndereco(sist.getEnderecos().get(item));
+					}
+				}//Vinculando Endereço
+				
+				Set<String> keysGuincho = sist.getGuinchos().keySet();
+				for(String item : keysGuincho) {
+					if(sist.getGuinchos().get(item).getTipo().equalsIgnoreCase(c.getTipoGuincho())) {
+						c.setGuinchoEscolhido(sist.getGuinchos().get(item));
+					}
+				}//Vinculando Guincho
+				
+				sist.getChamados().put(idChamado, c);
+				
+			
+			}
+			
 			System.out.println(sist.getEnderecos());
 			System.out.println(sist.getGuinchos());
 			System.out.println(sist.getPlanos());
 			System.out.println(sist.getCaminhoes());
+			System.out.println(sist.getChamados());
+			System.out.println(sist.getChamados().get("CH112233").getGuinchoEscolhido());
+			System.out.println(sist.getChamados().get("CH445566").getGuinchoEscolhido());
 			
 			arquivoEntradaEnderecos.close();
 			arquivoEntradaGuinchos.close();
 			arquivoEntradaPlanos.close();
 			arquivoEntradaCaminhoes.close();
+			arquivoEntradaChamados.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
