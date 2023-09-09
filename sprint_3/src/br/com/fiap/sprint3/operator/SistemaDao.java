@@ -84,6 +84,9 @@ public class SistemaDao {
 	public void deslogar(Cliente cliente) {
 		cliente.setStatusLogin(false);
 	}//Deslogar
+	public void imprimirInformacoes(Cliente cliente) {
+		System.out.println(cliente.retornarInformacoes());
+	}
 
 	
 	

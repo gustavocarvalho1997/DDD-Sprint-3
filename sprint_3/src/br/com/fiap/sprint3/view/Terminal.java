@@ -205,8 +205,13 @@ public class Terminal {
 			
 			
 			while(sist.getClientes().get(loginEfetivado).isStatusLogin()) {
-				
-			}
+				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Qual operação deseja realizar?\n1 - Verificar suas informações\n2 - Verificar histórico de chamados"));
+				if(opcao == 1) {
+					sist.imprimirInformacoes(sist.getClientes().get(loginEfetivado));
+				} else if(opcao == 2) {
+					
+				}
+			}//Menu
 			
 			arquivoEntradaEnderecos.close();
 			arquivoEntradaGuinchos.close();
