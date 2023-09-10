@@ -1,0 +1,4 @@
+ED000001,CL112233,Rua Cândida de Carvalho,São Migual,São Paulo,São Paulo,08041-030,477
+ED000002,CL445566,Rua das Laranjeiras,Laranjeiras,Rio de Janeiro,Rio de Janeiro,23823-040,21
+ED000003,CH112233,Av Imperador,Jardim São Sebastião,São Paulo,São Paulo,08050-000,4424
+ED000004,CH445566,Rua Japicanga,Jardim das Camelias,São Paulo,São Paulo,08050-540,37
