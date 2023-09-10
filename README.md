@@ -3,9 +3,13 @@ Sprint 3 - DDD
 
 ## Integrantes
 Nome: Gustavo Carvalho    RM: 552466
+
 Nome: Ronald de Oliveira  RM: 552364
+
 Nome: Nicoly Oliveira     RM: 552410
+
 Nome: Nicolly de Almeida  RM: 552579
+
 Nome: Vitor Teixeira      RM: 552228
 
 ## Objetivo
