@@ -1,7 +1,10 @@
 package br.com.fiap.sprint3.operator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JOptionPane;
@@ -200,6 +203,78 @@ public class SistemaDao {
 		return informacoesMensagem;
 	}//retornaInformacoesMensagem
 	
+	public void abrirChamado(Cliente cliente) {
+		Random randI = new Random();
+		boolean verificaAtivo = false;
+		Set<String> keys = cliente.getChamados().keySet();
+		for(String item : keys) {
+			if(cliente.getChamados().get(item).isChamadoAtivo()) {
+				verificaAtivo = true;
+			}
+		}//for
+		if(verificaAtivo) {
+			System.out.println("Você ja tem um chamado ativo no momento!");
+		} else {
+			String idEndereco = "";
+			do {
+				String prefixoEnd = "ED";
+				int n = randI.nextInt(999999);
+				idEndereco = prefixoEnd + n;
+			} while (enderecos.containsKey(idEndereco));//ID ENDEREÇO DEF
+			String idChamado = "";
+			do {
+				String prefixoChamado = "CH";
+				int n = randI.nextInt(999999);
+				idChamado = prefixoChamado + n;
+			} while (chamados.containsKey(idChamado));//ID CHAMADO DEF
+			String logradouro = JOptionPane.showInputDialog("Informe o logradouro da ocorrencia:");
+			String bairro = JOptionPane.showInputDialog("Informe o bairro: ");
+			String cidade = JOptionPane.showInputDialog("Informe a cidade: ");
+			String estado = JOptionPane.showInputDialog("Informe o estado: ");
+			String cep = JOptionPane.showInputDialog("Informe o CEP: ");
+			int numero = Integer.parseInt(JOptionPane.showInputDialog("Informe o número: "));
+			//Instanciando endereço
+			Endereco enderecoChamado = new Endereco(idEndereco, idChamado, logradouro, bairro, cidade, estado, cep, numero);
+			//TÉRMINO INFORMAÇÕES ENDEREÇO
+			//INICIO INFORMAÇÕES CHAMADO
+			boolean chamadoAtivo = true;
+			boolean chamadoPausado = false;
+			boolean chamadoFechado = false;
+			//idChamado ja definido acima
+			//DEFININDO DATA E HORA
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			LocalDateTime now = LocalDateTime.now();
+			String[] arrDataHora = dtf.format(now).toString().split(" ");
+			String dataDaOcorrencia = arrDataHora[0];
+			String horaDaOcorrencia = arrDataHora[1];
+			//FINALIZANDO DATA E HORA
+			String descricao = JOptionPane.showInputDialog("Informe o que ocorreu: ");
+			String tipoGuincho = "";
+			if(cliente.getVeiculo().getPesoTotalEmToneladas() <= 10) {
+				tipoGuincho = "Tipo A";
+			} else {
+				tipoGuincho = "Tipo B";
+			}
+			String idVinculo = cliente.getIdCliente();
+			String Status = "Chamado Ativo";
+			//Instanciando chamado
+			Chamado chamado = new Chamado(chamadoAtivo, chamadoPausado, chamadoFechado, idChamado, dataDaOcorrencia, horaDaOcorrencia, descricao, tipoGuincho, idVinculo, Status);
+			//Vinculando guincho
+			Set<String> keysGuincho = guinchos.keySet();
+			for(String item : keysGuincho) {
+				if(guinchos.get(item).getTipo().equalsIgnoreCase(chamado.getTipoGuincho())) {
+					chamado.setGuinchoEscolhido(guinchos.get(item));
+				}
+			}//Vinculo guincho
+			chamado.setEndereco(enderecoChamado);
+			//Objetos criados por completo
+			//Armazenando nas Hash
+			enderecos.put(idEndereco, enderecoChamado);
+			chamados.put(idChamado, chamado);
+			cliente.getChamados().put(idChamado, chamado);
+			System.out.println("Chamado aberto com sucesso!");
+		}//ELSE
+	}//abrirChamado
 
 	
 	

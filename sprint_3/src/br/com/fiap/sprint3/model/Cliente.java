@@ -9,7 +9,7 @@ public class Cliente {
 	private Endereco endereco;
 	private PlanoDeSeguro planoDeSeguro;
 	private HashMap<String, Chamado> chamados;
-	private Veiculo veiculo;
+	private Caminhao veiculo;
 	
 	//Construtor
 	public Cliente(String nome, String cpf, String idCliente, String dataNascimento, String sexo, String email,
@@ -70,7 +70,7 @@ public class Cliente {
 		return chamados;
 	}
 
-	public Veiculo getVeiculo() {
+	public Caminhao getVeiculo() {
 		return veiculo;
 	}
 
@@ -119,7 +119,7 @@ public class Cliente {
 		this.chamados = chamados;
 	}
 
-	public void setVeiculo(Veiculo veiculo) {
+	public void setVeiculo(Caminhao veiculo) {
 		this.veiculo = veiculo;
 	}
 	
