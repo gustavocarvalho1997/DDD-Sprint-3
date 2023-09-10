@@ -76,6 +76,10 @@ public class Endereco {
 		return "Logradouro: " + logradouro+ ", Número: " + numero + ", Bairro: " + bairro + ", Cidade: " 
 				+ cidade + ", Estado: " + estado + ", CEP: " + cep;
 	}// retornarInformacoes
+	public String formatoSalvamento() {
+		return idEndereco + "," + idVinculo + "," + logradouro + "," + bairro 
+				+ "," + cidade + "," + estado + "," + cep + "," + numero;
+	}//formatoSalvamento
 	
 	//toString
 	@Override
