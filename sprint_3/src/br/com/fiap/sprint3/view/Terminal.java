@@ -193,7 +193,7 @@ public class Terminal {
 					sist.logar(sist.getClientes().get(loginInformado));
 					loginEfetivado = loginInformado;
 					
-					JOptionPane.showConfirmDialog(null, "Bem vindo(a)" + sist.getClientes().get(loginEfetivado).getNome());
+					JOptionPane.showConfirmDialog(null, "Bem vindo(a) " + sist.getClientes().get(loginEfetivado).getNome());
 					
 				} else {
 					System.out.println("Senha inválida");

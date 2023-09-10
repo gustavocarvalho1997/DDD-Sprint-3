@@ -101,18 +101,29 @@ public class SistemaDao {
 		if(cliente.getChamados().containsKey(chamadoKey)) {
 			int opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite conforme sua opção desejada: \n1 - Para ativar chamado\n2 - Para pausar chamado\n3 - Para fechar chamado"));
 			if(opcao == 1) {//ATIVAR CHAMADO
-				if(cliente.getChamados().get(chamadoKey).isChamadoAtivo()) {
-					System.out.println("Chamado ja se encontra ativo");
+				boolean verificaAtivo = false;
+				Set<String> keys = cliente.getChamados().keySet();
+				for(String item : keys) {
+					if(cliente.getChamados().get(item).isChamadoAtivo()) {
+						verificaAtivo = true;
+					}
+				}
+				if(verificaAtivo) {
+					System.out.println("Você ja tem um chamado ativo no momento!");
 				} else {
-					cliente.getChamados().get(chamadoKey).setChamadoAtivo(true);
-					cliente.getChamados().get(chamadoKey).setChamadoPausado(false);
-					cliente.getChamados().get(chamadoKey).setChamadoFechado(false);
-					cliente.getChamados().get(chamadoKey).setStatus("Chamado Ativo");
-					chamados.get(chamadoKey).setChamadoAtivo(true);
-					chamados.get(chamadoKey).setChamadoPausado(false);
-					chamados.get(chamadoKey).setChamadoFechado(false);
-					chamados.get(chamadoKey).setStatus("Chamado Ativo");
-					System.out.println("Chamado ativo com sucesso");
+					if(cliente.getChamados().get(chamadoKey).isChamadoAtivo()) {
+						System.out.println("Chamado ja se encontra ativo");
+					} else {
+						cliente.getChamados().get(chamadoKey).setChamadoAtivo(true);
+						cliente.getChamados().get(chamadoKey).setChamadoPausado(false);
+						cliente.getChamados().get(chamadoKey).setChamadoFechado(false);
+						cliente.getChamados().get(chamadoKey).setStatus("Chamado Ativo");
+						chamados.get(chamadoKey).setChamadoAtivo(true);
+						chamados.get(chamadoKey).setChamadoPausado(false);
+						chamados.get(chamadoKey).setChamadoFechado(false);
+						chamados.get(chamadoKey).setStatus("Chamado Ativo");
+						System.out.println("Chamado ativo com sucesso");
+					}
 				}
 			} else if(opcao == 2) {//PAUSAR CHAMADO
 				if(cliente.getChamados().get(chamadoKey).isChamadoPausado()) {
