@@ -20,3 +20,8 @@ Esse projeto funciona de forma a dar uma ideia do processo de algumas das funç�
 ![image](https://github.com/gustavocarvalho1997/DDD-Sprint-3/assets/79180740/f1061afd-3d3f-4569-8bd2-639954e7d55e)
 
 As models foram criadas conforme diagrama UML, onde a sua maioria tem funções que permitem com que retornem suas informações e também o formato que espera com que sejam salvas nos arquivos txt para serem recuperadas em uma futura execução do programa. Para que os objetos sejam montados com seus respectivos atributos, foi inserido um atributo nomeado como "idVinculo" em algumas classes assim, durante a leitura dos arquivos, é identificado se há relação entre algum objeto com outro e feito o devido vínculo.
+
+Com base nesses modelos, quando o main é iniciado, ele começa lendo os arquivos txt e monta todos os objetos armazenados nesses arquivos.
+![image](https://github.com/gustavocarvalho1997/DDD-Sprint-3/assets/79180740/c18d0842-d4bb-4707-ba86-7c2cfcbf838a)
+
+Com exceção do arquivo MensagemEnviada.txt, que é utilizado para armazenar as mensagens que teoricamente seriam enviadas para o funcionário da porto, os demais contem informações que são necessárias na montagem dos objetos.
