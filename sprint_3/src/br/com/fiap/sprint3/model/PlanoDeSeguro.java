@@ -63,6 +63,10 @@ public class PlanoDeSeguro {
 				+ ", Coberturas: " + coberturas + ", Data da Contratação: " 
 				+ dataDaContratacao;
 	}//retornarInformacoes
+	public String formatoSalvamento() {
+		return idSeguro + "," + tipoDeSeguro + "," + coberturas + "," 
+				+ dataDaContratacao + "," + idVinculo;
+	}//formatoSalvamento
 
 	//toString
 	@Override

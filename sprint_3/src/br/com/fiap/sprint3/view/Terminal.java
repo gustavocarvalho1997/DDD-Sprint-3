@@ -189,9 +189,6 @@ public class Terminal {
 			PrintWriter arquivoMensagem = new PrintWriter(outputStreamMensagem);
 			//Escrita Arquivos
 			
-			System.out.println(sist.getClientes().get("CL112233").getVeiculo());
-			System.out.println(sist.getClientes().get("CL445566").getVeiculo());
-			
 			//Login
 			String loginInformado = JOptionPane.showInputDialog("Informe seu ID como Cliente: ").toUpperCase();
 			String senhaInformada = JOptionPane.showInputDialog("Informe sua senha: ");
@@ -218,7 +215,8 @@ public class Terminal {
 			while(sist.getClientes().get(loginEfetivado).isStatusLogin()) {
 				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Qual operação deseja realizar?\n1 - Verificar suas informações\n2 - Verificar histórico de chamados"
 						+ "\n3 - Alterar Status chamado\n4 - Consultar informações de um chamado específico"
-						+ "\n5 - Para enviar uma mensagem para o funcionário da Porto\n6 - Para abrir um chamado"));
+						+ "\n5 - Para enviar uma mensagem para o funcionário da Porto\n6 - Para abrir um chamado"
+						+ "\n7 - Para deslogar sem salvar alterações\n8 - Para deslogar salvando alterações"));
 				if(opcao == 1) {
 					sist.imprimirInformacoes(sist.getClientes().get(loginEfetivado));
 				} else if(opcao == 2) {
@@ -235,7 +233,10 @@ public class Terminal {
 				} else if(opcao == 6) {
 					sist.abrirChamado(sist.getClientes().get(loginEfetivado));
 				} else if(opcao == 7) {
-					sist.getClientes().get(loginEfetivado).setStatusLogin(false);
+					sist.deslogar(sist.getClientes().get(loginEfetivado));
+				} else if(opcao == 8) {
+					sist.salvar();
+					sist.deslogar(sist.getClientes().get(loginEfetivado));
 				}
 			}//Menu
 			

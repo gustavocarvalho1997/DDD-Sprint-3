@@ -56,5 +56,11 @@ public class Guincho extends Veiculo{
 		return super.retornarInformacoes() + ", Carga Máxima: " + cargaMaximaEmToneladas 
 				+ " toneladas, Comprimento Máximo: " + ComprimentoMaximo 
 				+ ", Tipo: " + tipo + ", Informações Adicionais: " + informacoesAdicionais;
-	}
+	}//retornarInformacoes
+	public String formatoSalvamento() {
+		return modelo + "," + chassi + "," + renavam + "," + cor + "," + ano 
+				+ "," + altura + "," + comprimento + "," + largura + "," 
+				+ cargaMaximaEmToneladas + "," + ComprimentoMaximo + "," + informacoesAdicionais
+				+ "," + tipo;
+	}//formatoSalvamento
 }//CLASS

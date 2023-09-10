@@ -127,6 +127,12 @@ public class Chamado {
 				+ ", Data: " + dataDaOcorrencia + ", Horário: " + horaDaOcorrencia
 				+ ", Tipo de Guincho: " + tipoGuincho + ", Status: " + status;
 	}//retornarInformacoes
+	public String formatoSalvamento() {
+		return chamadoAtivo + "," + chamadoPausado + "," + chamadoFechado 
+				+ "," + idChamado + "," + dataDaOcorrencia + "," + horaDaOcorrencia
+				+ "," + descricao + "," + tipoGuincho + "," + idVinculo 
+				+ "," + status;
+	}//formatoSalvamento
 
 	//toString
 	@Override

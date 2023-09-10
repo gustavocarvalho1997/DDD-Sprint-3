@@ -1,5 +1,8 @@
 package br.com.fiap.sprint3.operator;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -90,6 +93,7 @@ public class SistemaDao {
 	}//Logar
 	public void deslogar(Cliente cliente) {
 		cliente.setStatusLogin(false);
+		System.out.println("Deslogado com sucesso!");
 	}//Deslogar
 	public void imprimirInformacoes(Cliente cliente) {
 		System.out.println(cliente.retornarInformacoes());
@@ -275,7 +279,68 @@ public class SistemaDao {
 			System.out.println("Chamado aberto com sucesso!");
 		}//ELSE
 	}//abrirChamado
-
+	
+	public void salvar() {
+		try {
+			//outputStream
+			FileWriter outputStreamEndereco = new FileWriter("Enderecos.txt");
+			FileWriter outputStreamGuincho = new FileWriter("Guincho.txt");
+			FileWriter outputStreamPlano = new FileWriter("PlanoDeSeguro.txt");
+			FileWriter outputStreamCaminhao = new FileWriter("Caminhao.txt");
+			FileWriter outputStreamChamado = new FileWriter("Chamado.txt");
+			FileWriter outputStreamCliente = new FileWriter("Cliente.txt");
+			//PrintWriter
+			PrintWriter arquivoEndereco = new PrintWriter(outputStreamEndereco);
+			PrintWriter arquivoGuincho = new PrintWriter(outputStreamGuincho);
+			PrintWriter arquivoPlano = new PrintWriter(outputStreamPlano);
+			PrintWriter arquivoCaminhao = new PrintWriter(outputStreamCaminhao);
+			PrintWriter arquivoChamado = new PrintWriter(outputStreamChamado);
+			PrintWriter arquivoCliente = new PrintWriter(outputStreamCliente);
+			//keys
+			Set<String> keysEndereco = enderecos.keySet();
+			Set<String> keysGuincho = guinchos.keySet();
+			Set<String> keysPlano = planos.keySet();
+			Set<String> keysCaminhao = caminhoes.keySet();
+			Set<String> keysChamado = chamados.keySet();
+			Set<String> keysCliente = clientes.keySet();
+			//Salvando Endereços
+			for(String item : keysEndereco) {
+				arquivoEndereco.println(enderecos.get(item).formatoSalvamento());
+			}//for Endereços
+			//Salvando Guinchos
+			for(String item : keysGuincho) {
+				arquivoGuincho.println(guinchos.get(item).formatoSalvamento());
+			}//for Guinchos
+			//Salvando Planos
+			for(String item : keysPlano) {
+				arquivoPlano.println(planos.get(item).formatoSalvamento());
+			}//for Planos
+			//Salvando Caminhões
+			for(String item : keysCaminhao) {
+				arquivoCaminhao.println(caminhoes.get(item).formatoSalvamento());
+			}//for Caminhões
+			//Salvando Chamados
+			for(String item : keysChamado) {
+				arquivoChamado.println(chamados.get(item).formatoSalvamento());
+			}//for Chamados
+			//Salvando Cliente
+			for(String item : keysCliente) {
+				arquivoCliente.println(clientes.get(item).formatoSalvamento());
+			}//for Clientes
+			
+			//Fechando recursos
+			arquivoEndereco.close();
+			arquivoGuincho.close();
+			arquivoPlano.close();
+			arquivoCaminhao.close();
+			arquivoChamado.close();
+			arquivoCliente.close();
+			
+			System.out.println("Salvo com sucesso");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}//Salvar
 	
 	
 	

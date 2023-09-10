@@ -46,6 +46,11 @@ public class Caminhao extends Veiculo{
 	public String retornarInformacoes() {
 		return super.retornarInformacoes() + ", Numero de Eixos: " + numeroDeEixos
 				+ ", Peso Total: " + pesoTotalEmToneladas;
-	}
+	}//retornarInformacoes
+	public String formatoSalvamento() {
+		return modelo + "," + chassi + "," + renavam + "," + cor + ","
+				+ ano + "," + altura + "," + comprimento + "," + largura
+				+ "," + numeroDeEixos + "," + pesoTotalEmToneladas + "," + idVinculo;
+	}//formatoSalvamento
 	
 }//CLASS

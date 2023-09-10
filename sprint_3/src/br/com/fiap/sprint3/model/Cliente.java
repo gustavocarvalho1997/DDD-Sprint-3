@@ -129,7 +129,11 @@ public class Cliente {
 				+ ", Data Nascimento: " + dataNascimento + ", Sexo: " 
 				+ sexo + ", Email: " + email + ", Senha: " + senha;
 	}//retornarInformacoes
-
+	public String formatoSalvamento() {
+		return nome + "," + cpf + "," + idCliente + "," + dataNascimento
+				+ "," + sexo + "," + email + "," + senha;
+	}//formatoSalvamento
+	
 	//toString
 	@Override
 	public String toString() {

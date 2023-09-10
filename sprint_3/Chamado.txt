@@ -1,2 +1,3 @@
 false,false,true,CH112233,05/01/2023,16:03:23,Caminhão com problema na bateria,Tipo A,CL112233,Finalizado
 false,false,true,CH445566,04/05/2023,12:41:28,Caminhão com pneu furado,Tipo B,CL445566,Cancelado
+true,false,false,CH455302,10/09/2023,15:46:54,Caminhão vazando gasolina,Tipo A,CL112233,Chamado Ativo
