@@ -1,5 +1,6 @@
 package br.com.fiap.sprint3.operator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -175,6 +176,29 @@ public class SistemaDao {
 			System.out.println("Chamado não localizado, favor verificar o ID.");
 		}
 	}//alterarStatusChamado
+	
+	public void consultaChamadoEspecifico(Cliente cliente) {
+		String idChamado = JOptionPane.showInputDialog("Informe o ID do chamado a ser consultado:");
+		if(cliente.getChamados().containsKey(idChamado)) {
+			System.out.println(cliente.getChamados().get(idChamado).retornarInformacoes());
+		} else {
+			System.out.println("Chamado não localizado, favor verificar o ID.");
+		}
+	}//consultaChamadoEspecifico
+	
+	public ArrayList<String> retornaInformacoesMensagem(Cliente cliente){
+		String nome = "Nome: " + cliente.getNome();
+		String id = "Id Cliente: " + cliente.getIdCliente();
+		String email = "Email: " + cliente.getEmail();
+		String mensagem = "Mensagem: " + JOptionPane.showInputDialog("Escreva aqui sua mensagem: ");
+		ArrayList<String> informacoesMensagem = new ArrayList<>();
+		informacoesMensagem.add(0, nome);
+		informacoesMensagem.add(1, id);
+		informacoesMensagem.add(2, email);
+		informacoesMensagem.add(3, mensagem);
+		
+		return informacoesMensagem;
+	}//retornaInformacoesMensagem
 	
 
 	

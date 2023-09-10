@@ -2,7 +2,10 @@ package br.com.fiap.sprint3.view;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Set;
 
 import javax.swing.JOptionPane;
@@ -181,6 +184,12 @@ public class Terminal {
 			}
 			//Leitura Arquivos
 			
+			//Escrita Arquivos
+			FileWriter outputStreamMensagem = new FileWriter("MensagemEnviada.txt", true);
+			PrintWriter arquivoMensagem = new PrintWriter(outputStreamMensagem);
+			//Escrita Arquivos
+			
+			
 			//Login
 			String loginInformado = JOptionPane.showInputDialog("Informe seu ID como Cliente: ").toUpperCase();
 			String senhaInformada = JOptionPane.showInputDialog("Informe sua senha: ");
@@ -206,7 +215,8 @@ public class Terminal {
 			
 			while(sist.getClientes().get(loginEfetivado).isStatusLogin()) {
 				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Qual operação deseja realizar?\n1 - Verificar suas informações\n2 - Verificar histórico de chamados"
-						+ "\n3 - Alterar Status chamado"));
+						+ "\n3 - Alterar Status chamado\n4 - Consultar informações de um chamado específico"
+						+ "\n5 - Para enviar uma mensagem para o funcionário da Porto"));
 				if(opcao == 1) {
 					sist.imprimirInformacoes(sist.getClientes().get(loginEfetivado));
 				} else if(opcao == 2) {
@@ -214,6 +224,13 @@ public class Terminal {
 				} else if(opcao == 3) {
 					sist.alterarStatusChamado(sist.getClientes().get(loginEfetivado));
 				} else if(opcao == 4) {
+					sist.consultaChamadoEspecifico(sist.getClientes().get(loginEfetivado));
+				} else if(opcao == 5) {
+					ArrayList<String> mensagem = sist.retornaInformacoesMensagem(sist.getClientes().get(loginEfetivado));
+					for(String item : mensagem) {
+						arquivoMensagem.println(item);
+					}
+				} else if(opcao == 6) {
 					sist.getClientes().get(loginEfetivado).setStatusLogin(false);
 				}
 			}//Menu
@@ -224,6 +241,7 @@ public class Terminal {
 			arquivoEntradaCaminhoes.close();
 			arquivoEntradaChamados.close();
 			arquivoEntradaClientes.close();
+			arquivoMensagem.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
