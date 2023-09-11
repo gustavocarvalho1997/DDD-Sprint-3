@@ -31,7 +31,7 @@ Com base nesses modelos, quando o main é iniciado, ele começa lendo os arquivo
 
 Com exceção do arquivo MensagemEnviada.txt, que é utilizado para armazenar as mensagens que teoricamente seriam enviadas para o funcionário da porto, os demais contem informações que são necessárias na montagem dos objetos.
 
-##SistemaDao
+## SistemaDao
 Para manipular os objetos e armazena-los, foi utilizada a classe SistemaDao.java onde, quando a mesma é instanciada no terminal, o seu construtor inicia a estrutura de dados que será utilizada para armazenar os objetos que serão criados durante a leitura. Para armazenar os objetos e posteriormente busca-los na hora de manipula-los, foi utilizado HashMap.
 
 ![image](https://github.com/gustavocarvalho1997/DDD-Sprint-3/assets/79180740/e02fa713-0643-4d32-b9ec-130a95a83d4b)
@@ -46,6 +46,6 @@ Para ter acesso ao menu acima o usuário deverá efetuar o login, por meio dos a
 
 Portanto, sem que esteja logado, mesmo se entrasse no menu, não conseguiria encaminhar um objeto do tipo Cliente para as funções funcionarem.
 
-##Salvamento
+## Salvamento
 
 Quando o usuário não deseja mais utilizar a aplicação, é dada a opção de deslogar salvando as alterações realizadas, onde será acionada a função salvar() no SistemaDao.java e, junto a função que formata os dados pra salvamento em cada objeto, serão escritas nos arquivos para serem lidas em uma próxima utilização.
