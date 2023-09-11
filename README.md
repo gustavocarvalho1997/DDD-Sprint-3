@@ -47,5 +47,4 @@ Para ter acesso ao menu acima o usuário deverá efetuar o login, por meio dos a
 Portanto, sem que esteja logado, mesmo se entrasse no menu, não conseguiria encaminhar um objeto do tipo Cliente para as funções funcionarem.
 
 ## Salvamento
-
 Quando o usuário não deseja mais utilizar a aplicação, é dada a opção de deslogar salvando as alterações realizadas, onde será acionada a função salvar() no SistemaDao.java e, junto a função que formata os dados pra salvamento em cada objeto, serão escritas nos arquivos para serem lidas em uma próxima utilização.
